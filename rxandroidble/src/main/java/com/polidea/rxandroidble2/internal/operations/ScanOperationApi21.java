@@ -76,6 +76,10 @@ public class ScanOperationApi21 extends ScanOperation<RxBleInternalScanResult, S
                             LoggerUtil.bytesToHex(scanRecord != null ? scanRecord.getBytes() : null)
                     );
                 }
+
+                System.out.println("Incoming scanRecord =====> ");
+                System.out.println(Arrays.toString(scanRecord.getBytes()));
+
                 final RxBleInternalScanResult internalScanResult = internalScanResultCreator.create(callbackType, result);
                 if (emulatedScanFilterMatcher.matches(internalScanResult)) {
                     ObservableEmitter<RxBleInternalScanResult> refScanEmitter = scanEmitter;
