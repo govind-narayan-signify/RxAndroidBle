@@ -10,6 +10,7 @@ import com.polidea.rxandroidble2.internal.logger.LoggerUtil;
 import com.polidea.rxandroidble2.internal.scan.ScanRecordImplCompat;
 import com.polidea.rxandroidble2.scan.ScanRecord;
 
+import java.io.ByteArrayOutputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.ArrayList;
@@ -162,6 +163,13 @@ public class ScanRecordParser {
                                 + (scanRecord[currentPos] & 0xFF);
                         byte[] manufacturerDataBytes = extractBytes(scanRecord, currentPos + 2,
                                 dataLength - 2);
+
+                        if (manufacturerData.contains(manufacturerId)) {
+                            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                            outputStream.write(manufacturerData.get(manufacturerId));
+                            outputStream.write(manufacturerDataBytes);
+                            manufacturerDataBytes = outputStream.toByteArray();
+                        }
                         manufacturerData.put(manufacturerId, manufacturerDataBytes);
                         break;
                     default:
