@@ -78,7 +78,7 @@ public class ScanOperationApi21 extends ScanOperation<RxBleInternalScanResult, S
                 }
 
                 System.out.println("Incoming scanRecord =====> ");
-                System.out.println(Arrays.toString(scanRecord.getBytes()))
+                System.out.println(Arrays.toString(result.getScanRecord().getBytes()));
 
                 final RxBleInternalScanResult internalScanResult = internalScanResultCreator.create(callbackType, result);
                 if (emulatedScanFilterMatcher.matches(internalScanResult)) {
