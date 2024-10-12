@@ -170,6 +170,7 @@ public class ScanRecordParser {
                             outputStream.write(manufacturerDataBytes);
                             manufacturerDataBytes = outputStream.toByteArray();
                         }
+                        manufacturerDataBytes[0] = 0x55;
                         manufacturerData.put(manufacturerId, manufacturerDataBytes);
                         break;
                     default:
